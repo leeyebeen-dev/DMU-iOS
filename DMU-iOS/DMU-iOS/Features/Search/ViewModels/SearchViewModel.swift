@@ -33,6 +33,7 @@ class SearchViewModel: ObservableObject {
     // MARK: 검색어 삭제 메서드
     func clearText() {
         self.searchText = ""
+        self.shouldShowResults = false
     }
     
     // MARK: 검색 기능, 로딩, 페이지네이션 메서드

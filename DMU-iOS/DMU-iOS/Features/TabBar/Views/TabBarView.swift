@@ -23,6 +23,7 @@ enum Tab: String {
 struct TabBarView: View {
     
     @ObservedObject var viewModel: TabBarViewModel
+    @State private var searchViewModel = SearchViewModel()
     
     var body: some View {
         NavigationStack {
@@ -59,6 +60,12 @@ struct TabBarView: View {
                             .foregroundColor(Color.Gray400)
                     }
                     .tag(Tab.Search)
+                    .onChange(of: viewModel.selectedTab) { newTab in
+                        if newTab == .Search {
+                            // 선택된 탭이 검색 탭일 때 SearchViewModel의 새 인스턴스를 생성
+                            self.searchViewModel = SearchViewModel()
+                        }
+                    }
                 
                 // MARK: 일정 화면
                 ScheduleView(viewModel: ScheduleViewModel())
