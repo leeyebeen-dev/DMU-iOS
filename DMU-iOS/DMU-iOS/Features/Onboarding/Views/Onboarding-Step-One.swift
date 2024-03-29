@@ -45,7 +45,7 @@ struct Onboarding_Step_One: View {
                     .onEnded { _ in
                         self.hideKeyboard()
                     }
-                )
+            )
         }
     }
 }

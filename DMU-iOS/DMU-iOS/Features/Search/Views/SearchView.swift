@@ -25,9 +25,12 @@ struct SearchView: View {
                     
                     Spacer()
                 }
-                .onTapGesture {
-                    hideKeyboard()
-                }
+                .gesture(
+                    TapGesture()
+                        .onEnded { _ in
+                            self.hideKeyboard()
+                        }
+                )
                 
                 VStack {
                     if viewModel.isLoading {
@@ -36,6 +39,7 @@ struct SearchView: View {
                     }
                 }
             }
+            
         }
     }
 }
