@@ -54,15 +54,18 @@ struct OnboardingStepOneTitleView: View {
                     Text("소속학과")
                         .font(.Bold32)
                         .foregroundColor(Color.Blue300)
+                        .environment(\.sizeCategory, .large)
                     
                     Text("를 선택하면,")
                         .font(.Bold32)
                         .foregroundColor(Color.Gray500)
+                        .environment(\.sizeCategory, .large)
                 }
                 
                 Text("해당 학과의 공지만 바로 알려줘요.")
                     .font(.Bold24)
                     .foregroundColor(Color.Gray500)
+                    .environment(\.sizeCategory, .large)
             }
             .padding(.top, 60)
         }
