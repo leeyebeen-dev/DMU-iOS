@@ -118,6 +118,8 @@ struct OnboardingStepThreeSetNotificationView: View {
     
     @Binding var isOn : Bool
     
+    @Environment(\.openURL) var openURL
+    
     @ObservedObject var userSettings: UserSettings
     
     @State private var showingAlert = false
@@ -157,7 +159,12 @@ struct OnboardingStepThreeSetNotificationView: View {
                 Alert(
                     title: Text("기기 알림이 꺼져 있습니다."),
                     message: Text("기기 알림(설정 > 알림 > DMforU)을 켜야 공지사항에 대한 키워드 알림을 받을 수 있습니다."),
-                    dismissButton: .default(Text("확인"))
+                    primaryButton: .cancel(Text("닫기")),
+                    secondaryButton: .default(Text("설정으로 이동")) {
+                        if let url = URL(string: UIApplication.openSettingsURLString), UIApplication.shared.canOpenURL(url) {
+                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                        }
+                    }
                 )
             }
             .onChange(of: isOn) { newValue in
