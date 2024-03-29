@@ -40,6 +40,12 @@ struct Onboarding_Step_One: View {
                     Onboarding_Step_Two(isFirstLanching: $isFirstLanching)
                 }
             }
+            .gesture(
+                TapGesture()
+                    .onEnded { _ in
+                        self.hideKeyboard()
+                    }
+            )
         }
     }
 }
