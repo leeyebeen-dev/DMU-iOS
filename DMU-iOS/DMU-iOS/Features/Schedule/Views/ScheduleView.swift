@@ -90,6 +90,7 @@ struct ScheduleView: View {
                 Text(schedule.scheduleDisplay)
                     .font(.SemiBold14)
                     .foregroundColor(Color.Gray500)
+                    .environment(\.sizeCategory, .large)
                 
                 Spacer()
                 
@@ -98,7 +99,7 @@ struct ScheduleView: View {
                     .foregroundColor(Color.Gray500)
                     .multilineTextAlignment(.center)
                     .lineLimit(nil)
-                    .fixedSize(horizontal: false, vertical: true)
+                    .environment(\.sizeCategory, .large)
             }
             .padding(.horizontal, 20)
             .padding(.vertical, 12)

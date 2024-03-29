@@ -54,14 +54,17 @@ struct OnboardingStepTwoTitleView: View {
                         Text("키워드")
                             .font(.Bold32)
                             .foregroundColor(Color.Blue300)
+                            .environment(\.sizeCategory, .large)
                         
                         Text("를 설정하면,")
                             .font(.Bold32)
                             .foregroundColor(Color.Gray500)
+                            .environment(\.sizeCategory, .large)
                     }
                     Text("해당 키워드의 공지를 볼 수 있어요.")
                         .font(.Bold24)
                         .foregroundColor(Color.Gray500)
+                        .environment(\.sizeCategory, .large)
                 }
             }
             .padding(.leading, -20)

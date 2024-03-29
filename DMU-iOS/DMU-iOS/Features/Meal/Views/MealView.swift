@@ -86,6 +86,7 @@ struct WeeklyCalendarSingleDateView: View {
                 .foregroundColor(Color.Gray500)
                 .padding(.bottom, 10)
                 .lineLimit(1)
+                .environment(\.sizeCategory, .large)
             Text("\(Calendar.current.component(.day, from: date))")
                 .font(.Medium16)
                 .padding(.horizontal, 8)
@@ -94,11 +95,13 @@ struct WeeklyCalendarSingleDateView: View {
                 .background(calendar.isDate(date, inSameDayAs: selectedDate) ? Color.Blue300 : Color.clear)
                 .cornerRadius(10)
                 .lineLimit(1)
+                .environment(\.sizeCategory, .large)
             Text(weekday)
                 .font(.Medium12)
                 .padding(.top, 10)
                 .foregroundColor(Color.Gray500)
                 .lineLimit(1)
+                .environment(\.sizeCategory, .large)
         }
         .padding(.horizontal, 16)
         .onTapGesture {
@@ -132,6 +135,7 @@ struct InfomationSingleView: View {
             Text(text)
                 .font(.Medium14)
                 .foregroundColor(Color.Gray400)
+                .environment(\.sizeCategory, .large)
         }
     }
 }
