@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ScheduleView: View {
     
-    @ObservedObject var viewModel: ScheduleViewModel
+    @StateObject var viewModel: ScheduleViewModel
     
     var body: some View {
         ZStack{

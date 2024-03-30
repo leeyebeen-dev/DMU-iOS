@@ -9,14 +9,14 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @ObservedObject var viewModel: NoticeViewModel
+    @StateObject var viewModel: NoticeViewModel
     @ObservedObject var userSettings: UserSettings
     
     var body: some View {
         NavigationStack {
             ZStack {
                 VStack {
-                    HomeTopBarView(viewModel: viewModel)
+                    HomeTopBarView()
                     
                     NoticeTabBarView(viewModel: viewModel)
                     
@@ -40,9 +40,7 @@ struct HomeView: View {
 
 // MARK: - 공지사항 화면 상단바(로고 및 알림 버튼)
 struct HomeTopBarView: View {
-    
-    let viewModel: NoticeViewModel
-    
+        
     var body: some View {
         HStack {
             Image("logo")
