@@ -89,6 +89,7 @@ struct ScheduleView: View {
             HStack {
                 Text(schedule.scheduleDisplay)
                     .font(.SemiBold14)
+                    .lineSpacing(4)
                     .foregroundColor(Color.Gray500)
                     .environment(\.sizeCategory, .large)
                 
@@ -102,7 +103,8 @@ struct ScheduleView: View {
                     .environment(\.sizeCategory, .large)
             }
             .padding(.horizontal, 20)
-            .padding(.vertical, 12)
+            .padding(.top, 16)
+            .padding(.bottom, 8)
             
             Divider()
                 .background(Color.gray200)
