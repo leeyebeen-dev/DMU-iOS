@@ -18,8 +18,27 @@ struct SearchView: View {
                     SearchBarView(viewModel: viewModel)
                     
                     if viewModel.shouldShowResults {
-                        ScrollView {
-                            SearchResultsListView(viewModel: viewModel)
+                        if viewModel.searchNotices.isEmpty {
+                            Image(systemName: "magnifyingglass")
+                                .foregroundColor(Color.Gray400)
+                                .font(.system(size: 30))
+                                .padding(.top, 20)
+                                .padding(.bottom, 8)
+                            
+                            Text("검색 결과를 찾을 수 없어요")
+                                .font(.SemiBold20)
+                                .foregroundColor(Color.Gray500)
+                                .padding(.bottom, 8)
+                                .environment(\.sizeCategory, .large)
+                            
+                            Text("다른 키워드로 검색해보세요.")
+                                .font(.Medium16)
+                                .foregroundColor(Color.Gray400)
+                                .environment(\.sizeCategory, .large)
+                        } else {
+                            ScrollView {
+                                SearchResultsListView(viewModel: viewModel)
+                            }
                         }
                     }
                     
