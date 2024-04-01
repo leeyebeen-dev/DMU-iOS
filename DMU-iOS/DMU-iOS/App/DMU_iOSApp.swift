@@ -122,7 +122,18 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
+        
         print("didReceive: userInfo: ", userInfo)
+        
+        // url 추출하기
+        if let urlString = userInfo[AnyHashable("url")] as? String,
+           let url = URL(string: urlString) {
+            // 앱이 실행 중일 때 URL 열기
+            DispatchQueue.main.async {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        }
+        
         completionHandler()
     }
     
