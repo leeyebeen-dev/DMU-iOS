@@ -18,8 +18,27 @@ struct SearchView: View {
                     SearchBarView(viewModel: viewModel)
                     
                     if viewModel.shouldShowResults {
-                        ScrollView {
-                            SearchResultsListView(viewModel: viewModel)
+                        if viewModel.searchNotices.isEmpty {
+                            Image(systemName: "magnifyingglass")
+                                .foregroundColor(Color.Gray400)
+                                .font(.system(size: 30))
+                                .padding(.top, 20)
+                                .padding(.bottom, 8)
+                            
+                            Text("검색 결과를 찾을 수 없어요")
+                                .font(.SemiBold20)
+                                .foregroundColor(Color.Gray500)
+                                .padding(.bottom, 8)
+                                .environment(\.sizeCategory, .large)
+                            
+                            Text("다른 키워드로 검색해보세요.")
+                                .font(.Medium16)
+                                .foregroundColor(Color.Gray400)
+                                .environment(\.sizeCategory, .large)
+                        } else {
+                            ScrollView {
+                                SearchResultsListView(viewModel: viewModel)
+                            }
                         }
                     }
                     
@@ -49,24 +68,44 @@ struct SearchBarView: View {
     
     @ObservedObject var viewModel: SearchViewModel
     
+    @State private var textfieldBackgroundColor = Color.Blue100
+    @State private var textfieldForegroundColor = Color.Blue300
+    @State private var imageForegroundColor = Color.Blue300
+    
     var body: some View {
         HStack {
             TextField("검색어를 2글자 이상 입력하세요.", text: $viewModel.searchText, onCommit: {
-                viewModel.setupSearchAndLoadFirstPage()
-                withAnimation {
-                    viewModel.isEditing = false
-                    hideKeyboard()
+                if viewModel.searchText.count >= 2 {
+                    viewModel.setupSearchAndLoadFirstPage()
+                    withAnimation {
+                        viewModel.isEditing = false
+                        hideKeyboard()
+                    }
+                } else {
+                    withAnimation(.easeInOut(duration: 0.5)) {
+                        textfieldBackgroundColor = Color.Red100
+                        textfieldForegroundColor = Color.Red400
+                        imageForegroundColor = Color.Red400
+                    }
+                    // 0.5초 후 원래 색상으로 복귀
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        withAnimation(.easeInOut(duration: 0.5)) {
+                            textfieldBackgroundColor = Color.Blue100
+                            textfieldForegroundColor = Color.Blue300
+                            imageForegroundColor = Color.Blue300
+                        }
+                    }
                 }
             })
             .padding(EdgeInsets(top: 12, leading: 40, bottom: 12, trailing: 12))
-            .background(Color.Blue100)
-            .foregroundColor(Color.Blue300)
+            .background(textfieldBackgroundColor)
+            .foregroundColor(textfieldForegroundColor)
             .font(.Medium16)
             .cornerRadius(8)
             .overlay(
                 HStack {
                     Image(systemName: "magnifyingglass")
-                        .foregroundColor(Color.Blue300)
+                        .foregroundColor(imageForegroundColor)
                         .padding(.leading, 12)
 
                     Spacer()

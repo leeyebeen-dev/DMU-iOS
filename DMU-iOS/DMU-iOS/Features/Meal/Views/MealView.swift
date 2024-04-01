@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MealView: View {
     
-    @ObservedObject var viewModel: MealViewModel
+    @StateObject var viewModel: MealViewModel
     
     @State private var selectedDate = Date()
     

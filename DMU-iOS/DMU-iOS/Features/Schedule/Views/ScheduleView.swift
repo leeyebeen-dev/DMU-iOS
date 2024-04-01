@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ScheduleView: View {
     
-    @ObservedObject var viewModel: ScheduleViewModel
+    @StateObject var viewModel: ScheduleViewModel
     
     var body: some View {
         ZStack{
@@ -43,7 +43,9 @@ struct ScheduleView: View {
     // MARK: 학사일정 화면 네비게이션바 뷰
     private var ScheduleMonthNavigationBarView: some View {
         HStack {
-            monthChangeButton(direction: -1, systemName: "chevron.left")
+            if viewModel.currentYearMonth != "2023년 1월" {
+                monthChangeButton(direction: -1, systemName: "chevron.left")
+            }
             
             Spacer().frame(minWidth: 100)
             
@@ -53,7 +55,9 @@ struct ScheduleView: View {
             
             Spacer().frame(minWidth: 100)
             
-            monthChangeButton(direction: 1, systemName: "chevron.right")
+            if viewModel.currentYearMonth != "2025년 2월" {
+                monthChangeButton(direction: 1, systemName: "chevron.right")
+            }
         }
         .padding(.horizontal, 24)
     }
@@ -89,6 +93,7 @@ struct ScheduleView: View {
             HStack {
                 Text(schedule.scheduleDisplay)
                     .font(.SemiBold14)
+                    .lineSpacing(4)
                     .foregroundColor(Color.Gray500)
                     .environment(\.sizeCategory, .large)
                 
@@ -102,7 +107,8 @@ struct ScheduleView: View {
                     .environment(\.sizeCategory, .large)
             }
             .padding(.horizontal, 20)
-            .padding(.vertical, 12)
+            .padding(.top, 16)
+            .padding(.bottom, 8)
             
             Divider()
                 .background(Color.gray200)

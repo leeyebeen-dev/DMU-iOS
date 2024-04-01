@@ -40,6 +40,7 @@ struct SettingView: View {
                 .onChange(of: viewModel.userSettings.isKeywordNotificationOn) { newValue in
                     if newValue {
                         viewModel.postUpdateKeyword()
+                        print("\(UserSettings().selectedKeywordsContents)가 업데이트 되었습니다.")
                     } else {
                         viewModel.postDeleteKeyword()
                     }

@@ -56,6 +56,7 @@ class SettingViewModel: ObservableObject {
             case .success(let success):
                 if success {
                     print("키워드 업데이트 성공")
+                    self.userSettings.isKeywordNotificationOn = true
                 } else {
                     print("카워드 업데이트 실패")
                 }
@@ -113,6 +114,7 @@ class SettingViewModel: ObservableObject {
             case .success(let success):
                 if success {
                     print("학과 업데이트 성공")
+                    self.userSettings.isDepartmentNotificationOn = true
                 } else {
                     print("학과 업데이트 실패")
                 }
