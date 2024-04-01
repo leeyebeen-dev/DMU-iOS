@@ -43,7 +43,9 @@ struct ScheduleView: View {
     // MARK: 학사일정 화면 네비게이션바 뷰
     private var ScheduleMonthNavigationBarView: some View {
         HStack {
-            monthChangeButton(direction: -1, systemName: "chevron.left")
+            if viewModel.currentYearMonth != "2023년 1월" {
+                monthChangeButton(direction: -1, systemName: "chevron.left")
+            }
             
             Spacer().frame(minWidth: 100)
             
@@ -53,7 +55,9 @@ struct ScheduleView: View {
             
             Spacer().frame(minWidth: 100)
             
-            monthChangeButton(direction: 1, systemName: "chevron.right")
+            if viewModel.currentYearMonth != "2025년 2월" {
+                monthChangeButton(direction: 1, systemName: "chevron.right")
+            }
         }
         .padding(.horizontal, 24)
     }
