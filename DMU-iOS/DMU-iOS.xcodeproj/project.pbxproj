@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F901F2652B3EA51A002F6E3C /* Onboarding-Step-Three.swift in Sources */ = {isa = PBXBuildFile; fileRef = F901F2642B3EA51A002F6E3C /* Onboarding-Step-Three.swift */; };
+		F906A6D32BBBF989004BE79D /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F906A6D22BBBF989004BE79D /* PrivacyInfo.xcprivacy */; };
 		F90D26492B3D9C0100C864C4 /* Onboarding-Step-Two.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90D26482B3D9C0100C864C4 /* Onboarding-Step-Two.swift */; };
 		F90D264B2B3DA00600C864C4 /* CustomKeyword.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90D264A2B3DA00600C864C4 /* CustomKeyword.swift */; };
 		F911890E2B5DF82200492AB1 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = F911890D2B5DF82200492AB1 /* CombineMoya */; };
@@ -114,6 +115,7 @@
 
 /* Begin PBXFileReference section */
 		F901F2642B3EA51A002F6E3C /* Onboarding-Step-Three.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Onboarding-Step-Three.swift"; sourceTree = "<group>"; };
+		F906A6D22BBBF989004BE79D /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		F90D26482B3D9C0100C864C4 /* Onboarding-Step-Two.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Onboarding-Step-Two.swift"; sourceTree = "<group>"; };
 		F90D264A2B3DA00600C864C4 /* CustomKeyword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomKeyword.swift; sourceTree = "<group>"; };
 		F914AD812B47C85400706D48 /* SettingDepartmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDepartmentView.swift; sourceTree = "<group>"; };
@@ -613,6 +615,7 @@
 				F9B77F262B3AF91C00A6E2D1 /* Info.plist */,
 				F94224202BA1292E004B679E /* GoogleService-Info.plist */,
 				F92993542B63DA7D009DC2B6 /* Secrets.plist */,
+				F906A6D22BBBF989004BE79D /* PrivacyInfo.xcprivacy */,
 				F96760672B3AE1CC00C09F29 /* Preview Content */,
 			);
 			path = "DMU-iOS";
@@ -887,6 +890,7 @@
 				F9B77F362B3AF9D900A6E2D1 /* Pretendard-ExtraBold.otf in Resources */,
 				F9B77F372B3AF9D900A6E2D1 /* Pretendard-Light.otf in Resources */,
 				F92993552B63DA7D009DC2B6 /* Secrets.plist in Resources */,
+				F906A6D32BBBF989004BE79D /* PrivacyInfo.xcprivacy in Resources */,
 				F9B77F302B3AF9D900A6E2D1 /* Pretendard-Bold.otf in Resources */,
 				F9831D792BB3B02E00EA868E /* Settings.bundle in Resources */,
 				F9B77F352B3AF9D900A6E2D1 /* Pretendard-Thin.otf in Resources */,
@@ -1094,7 +1098,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "DMU-iOS/DMU-iOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEVELOPMENT_ASSET_PATHS = "\"DMU-iOS/Preview Content\"";
 				DEVELOPMENT_TEAM = WC353BS2XC;
 				ENABLE_PREVIEWS = YES;
@@ -1133,7 +1137,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "DMU-iOS/DMU-iOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEVELOPMENT_ASSET_PATHS = "\"DMU-iOS/Preview Content\"";
 				DEVELOPMENT_TEAM = WC353BS2XC;
 				ENABLE_PREVIEWS = YES;
