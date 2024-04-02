@@ -91,7 +91,7 @@ struct WeeklyCalendarSingleDateView: View {
             Text("\(Calendar.current.component(.day, from: date))")
                 .font(.Medium16)
                 .foregroundColor(calendar.isDate(date, inSameDayAs: selectedDate) ? Color.white : Color.Gray500)
-                .frame(width: 28, height: 28, alignment: .center)
+                .frame(width: 30, height: 30, alignment: .center)
                 .background(calendar.isDate(date, inSameDayAs: selectedDate) ? Color.Blue300 : Color.clear)
                 .cornerRadius(10)
                 .lineLimit(1)
