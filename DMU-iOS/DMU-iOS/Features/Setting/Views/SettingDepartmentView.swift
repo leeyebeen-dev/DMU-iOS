@@ -13,13 +13,16 @@ struct SettingDepartmentView: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    @State private var settingDepartment: String? = nil
+    @State private var tempSettingDepartment: String? = nil
     
     var body: some View {
         departmentListView()
             .navigationBarBackButtonHidden(true)
             .navigationBarTitle("학과 설정", displayMode: .inline)
             .navigationBarItems(leading: SettingDepartmentBackButton, trailing: SettingDepartmentSaveButton)
+            .onAppear {
+                self.tempSettingDepartment = viewModel.settingDepartment
+            }
     }
     
     //MARK: 학과 설정 화면 뒤로가기 버튼
@@ -37,13 +40,15 @@ struct SettingDepartmentView: View {
     @ViewBuilder
     var SettingDepartmentSaveButton: some View {
         Button(action: {
-            viewModel.saveDepartment()
+            if let department = tempSettingDepartment {
+                viewModel.saveDepartment(department: department)
+            }
             viewModel.postUpdateDepartment()
             self.presentationMode.wrappedValue.dismiss()
         }) {
             Text("완료")
                 .font(.Medium16)
-                .foregroundColor(viewModel.settingDepartment != nil ? Color.Blue300 : Color.Gray500)
+                .foregroundColor(tempSettingDepartment != nil ? Color.Blue300 : Color.Gray500)
         }
         .disabled(viewModel.settingDepartment == nil)
     }
@@ -68,10 +73,14 @@ struct SettingDepartmentView: View {
             .font(.Medium18)
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 40, alignment: .center)
             .padding([.top, .bottom], 8)
-            .background(viewModel.settingDepartment == department ? Color.Blue300 : Color.white)
-            .foregroundColor(viewModel.settingDepartment == department ? Color.white : Color.Gray400)
+            .background(tempSettingDepartment == department ? Color.Blue300 : Color.white)
+            .foregroundColor(tempSettingDepartment == department ? Color.white : Color.Gray400)
             .onTapGesture {
-                viewModel.selectDepartment(department)
+                if tempSettingDepartment == department {
+                                    tempSettingDepartment = nil
+                } else {
+                    tempSettingDepartment = department
+                }
             }
             .cornerRadius(10)
             .overlay(

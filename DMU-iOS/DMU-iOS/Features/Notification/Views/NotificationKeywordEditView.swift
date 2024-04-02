@@ -10,6 +10,7 @@ import SwiftUI
 struct NotificationKeywordEditView: View {
     
     @State private var showKeywordBalloon = true
+    @State private var tempSettingKeywords: [String] = []
     
     @ObservedObject var userSettings = UserSettings()
     @ObservedObject var viewModel: SettingViewModel
@@ -22,7 +23,7 @@ struct NotificationKeywordEditView: View {
             
             ZStack(alignment: .bottom) {
                 // 키워드 리스트
-                CustomKeyword(selectedKeywords: $userSettings.selectedKeywordsContents)
+                CustomKeyword(selectedKeywords: $tempSettingKeywords)
                 
                 if showKeywordBalloon {
                     NotificationKeywordEditBalloonView()
@@ -43,6 +44,7 @@ struct NotificationKeywordEditView: View {
             CustomButton(
                 title: "완료",
                 action: {
+                    viewModel.saveKeyword(keywords: tempSettingKeywords)
                     viewModel.postUpdateKeyword()
                     isNavigatingToKeywordEditView = false
                 },
@@ -50,6 +52,9 @@ struct NotificationKeywordEditView: View {
             )
             
             Spacer()
+        }
+        .onAppear {
+            self.tempSettingKeywords = viewModel.settingKeywordsContents
         }
     }
 }

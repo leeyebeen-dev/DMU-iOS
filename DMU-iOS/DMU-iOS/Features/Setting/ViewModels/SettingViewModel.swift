@@ -10,32 +10,24 @@ import Foundation
 class SettingViewModel: ObservableObject {
     
     @Published var settingDepartment: String? = nil
+    @Published var settingKeywordsContents: [String] = []
     @Published var userSettings: UserSettings
     
     init(userSettings: UserSettings) {
         self.userSettings = userSettings
         self.settingDepartment = userSettings.selectedDepartment
+        self.settingKeywordsContents = userSettings.selectedKeywordsContents
     }
-    
-    //MARK: 학과 선택
-    func selectDepartment(_ department: String) {
-        if settingDepartment == department {
-            settingDepartment = nil
-        } else {
-            settingDepartment = department
-        }
-    }
-    
-    //MARK: 선택 학과 저장
-    func saveDepartment() {
-        guard let department = settingDepartment else {
-            return
-        }
-        userSettings.selectedDepartment = department
-    }
+
+    //MARK: -키워드 편집
     
     //MARK: 키워드 업데이트 (알림 ON, 키워드 설정)
     private var notificationService = NotificationService()
+    
+    func saveKeyword(keywords: [String]) {
+        userSettings.selectedKeywordsContents = keywords
+        settingKeywordsContents = keywords
+    }
     
     func postUpdateKeyword() {
         if userSettings.fcmToken.isEmpty {
@@ -92,6 +84,14 @@ class SettingViewModel: ObservableObject {
                 print("키워드 삭제 실패: \(error.localizedDescription)")
             }
         }
+    }
+    
+    //MARK: -학과 편집
+    
+    //MARK: 선택 학과 저장
+    func saveDepartment(department: String) {
+        userSettings.selectedDepartment = department
+        settingDepartment = department
     }
     
     //MARK: 학과 업데이트 (알림 ON, 학과 설정)
