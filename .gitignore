@@ -1,3 +1,7 @@
+# .xcprivacy 파일
+
+*.xcprivacy
+
 # .DS_Store 파일
 
 .DS_Store
