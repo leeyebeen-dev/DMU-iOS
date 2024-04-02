@@ -43,6 +43,7 @@ struct MealView: View {
                             viewModel.loadMenuData()
                         }, isEnabled: true)
                     }
+                    .multilineTextAlignment(.center)
                 } else if viewModel.isMenuLoading {
                     LoadingView(lottieFileName: "DMforU_Loading_GIF")
                         .frame(width: 100, height: 100)
