@@ -22,7 +22,7 @@ struct SearchView: View {
                             Image(systemName: "magnifyingglass")
                                 .foregroundColor(Color.Gray400)
                                 .font(.system(size: 30))
-                                .padding(.top, 20)
+                                .padding(.top, 40)
                                 .padding(.bottom, 8)
                             
                             Text("검색 결과를 찾을 수 없어요")
