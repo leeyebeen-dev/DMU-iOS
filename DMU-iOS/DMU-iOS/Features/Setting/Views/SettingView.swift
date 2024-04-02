@@ -58,6 +58,7 @@ struct SettingView: View {
                         .environment(\.sizeCategory, .large)
                 }
                 .padding(.horizontal, 20)
+                .frame(maxWidth: .infinity, alignment: .leading)
                 .fullScreenCover(isPresented: $isNavigatingSettingToKeywordEditView) {
                     NotificationKeywordEditView(viewModel: viewModel, isNavigatingToKeywordEditView: $isNavigatingSettingToKeywordEditView)
                 }
@@ -101,6 +102,7 @@ struct SettingView: View {
                             Text(viewModel.userSettings.selectedDepartment)
                                 .font(.Medium14)
                                 .foregroundColor(Color.Gray400)
+                                .environment(\.sizeCategory, .large)
                             Image(systemName: "chevron.right")
                                 .foregroundColor(Color.Gray500)
                         }
