@@ -60,6 +60,7 @@ struct MealTitleView: View {
         Text("금주의 식단")
             .font(.SemiBold20)
             .foregroundColor(Color.Gray500)
+            .environment(\.sizeCategory, .large)
             .padding()
     }
 }

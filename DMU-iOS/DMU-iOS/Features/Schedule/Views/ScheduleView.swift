@@ -55,6 +55,7 @@ struct ScheduleView: View {
             .padding()
             .frame(maxWidth: .infinity)
             .foregroundColor(Color.Gray500)
+            .environment(\.sizeCategory, .large)
     }
     
     // MARK: 학사일정 화면 네비게이션바 뷰
@@ -62,6 +63,8 @@ struct ScheduleView: View {
         HStack {
             if viewModel.currentYearMonth != "2023년 1월" {
                 monthChangeButton(direction: -1, systemName: "chevron.left")
+            } else {
+                Spacer()
             }
             
             Spacer().frame(minWidth: 100)
@@ -69,11 +72,14 @@ struct ScheduleView: View {
             Text(viewModel.currentYearMonth)
                 .font(.Medium16)
                 .foregroundColor(Color.Gray500)
+                .environment(\.sizeCategory, .large)
             
             Spacer().frame(minWidth: 100)
             
             if viewModel.currentYearMonth != "2025년 2월" {
                 monthChangeButton(direction: 1, systemName: "chevron.right")
+            } else {
+                Spacer()
             }
         }
         .padding(.horizontal, 24)
