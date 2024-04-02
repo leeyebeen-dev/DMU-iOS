@@ -96,6 +96,7 @@ struct NoticeTabBarItem: View {
         VStack {
             Text(title.rawValue)
                 .font(.Bold16)
+                .environment(\.sizeCategory, .large)
                 .foregroundColor(viewModel.selectedTab == title ? Color.Blue300 : Color.Gray400)
                 .onTapGesture {
                     viewModel.selectedTab = title
