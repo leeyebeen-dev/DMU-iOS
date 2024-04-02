@@ -28,8 +28,8 @@ struct SearchView: View {
                             Text("검색 결과를 찾을 수 없어요")
                                 .font(.SemiBold20)
                                 .foregroundColor(Color.Gray500)
-                                .padding(.bottom, 8)
                                 .environment(\.sizeCategory, .large)
+                                .padding(.bottom, 8)
                             
                             Text("다른 키워드로 검색해보세요.")
                                 .font(.Medium16)
@@ -101,6 +101,7 @@ struct SearchBarView: View {
             .background(textfieldBackgroundColor)
             .foregroundColor(textfieldForegroundColor)
             .font(.Medium16)
+            .environment(\.sizeCategory, .large)
             .cornerRadius(8)
             .overlay(
                 HStack {
@@ -138,6 +139,7 @@ struct SearchBarView: View {
                 }) {
                     Text("취소")
                         .font(.Medium16)
+                        .environment(\.sizeCategory, .large)
                         .foregroundColor(Color.Blue300)
                         .transition(.move(edge: .trailing))
                 }
@@ -184,6 +186,7 @@ struct SearchResultSingleView: View {
                 Text(notice.noticeTitle)
                     .font(.Medium16)
                     .foregroundColor(Color.black)
+                    .environment(\.sizeCategory, .large)
                     .multilineTextAlignment(.leading)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
@@ -191,10 +194,12 @@ struct SearchResultSingleView: View {
                 Text(notice.noticeDate.formattedString)
                     .font(.Regular12)
                     .foregroundColor(Color.Gray400)
+                    .environment(\.sizeCategory, .large)
                 
                 Text(notice.noticeStaffName)
                     .font(.Regular12)
                     .foregroundColor(Color.Gray400)
+                    .environment(\.sizeCategory, .large)
             }
             .padding(.top, 1)
         }

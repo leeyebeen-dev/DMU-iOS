@@ -27,13 +27,13 @@ struct ScheduleView: View {
                         Text("학사일정을 불러오지 못했어요")
                             .font(.SemiBold20)
                             .foregroundColor(Color.Gray600)
-                            .padding(.bottom, 12)
                             .environment(\.sizeCategory, .large)
+                            .padding(.bottom, 12)
                         Text("네트워크 상태를 확인한 후,\n새로고침 버튼을 눌러 페이지를 불러올 수 있어요.")
                             .font(.Medium16)
                             .foregroundColor(Color.Gray400)
-                            .padding(.bottom, 28)
                             .environment(\.sizeCategory, .large)
+                            .padding(.bottom, 28)
                         CustomButton(title: "새로고침", action: {
                             viewModel.loadScheduleData()
                         }, isEnabled: true)
@@ -52,10 +52,10 @@ struct ScheduleView: View {
     private var ScheduleTitle: some View {
         Text("학사일정")
             .font(.SemiBold20)
-            .padding()
             .frame(maxWidth: .infinity)
             .foregroundColor(Color.Gray500)
             .environment(\.sizeCategory, .large)
+            .padding()
     }
     
     // MARK: 학사일정 화면 네비게이션바 뷰
@@ -73,6 +73,7 @@ struct ScheduleView: View {
                 .font(.Medium16)
                 .foregroundColor(Color.Gray500)
                 .environment(\.sizeCategory, .large)
+                .lineLimit(1)
             
             Spacer().frame(minWidth: 100)
             

@@ -18,6 +18,7 @@ struct CustomButton: View {
             Text(title)
                 .font(.Medium24)
                 .foregroundColor(.white)
+                .environment(\.sizeCategory, .large)
                 .frame(maxWidth: .infinity, minHeight: 55, maxHeight: 55)
                 .background(isEnabled ? Color.Blue300 : Color.Gray300)
                 .cornerRadius(10)

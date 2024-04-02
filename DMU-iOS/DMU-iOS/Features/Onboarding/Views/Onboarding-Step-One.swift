@@ -106,9 +106,10 @@ struct OnboardingStepOneProgressBarView: View {
             
             HStack {
                 Text("학과 선택")
-                    .padding(.top, 10)
                     .foregroundColor(Color.Blue300)
                     .font(.Bold16)
+                    .environment(\.sizeCategory, .large)
+                    .padding(.top, 10)
                 
                 Spacer()
             }
@@ -137,6 +138,7 @@ struct OnboardingStepOneSearchDepartmentView: View {
                 
                 TextField("소속 학과를 검색해주세요.", text: $searchText)
                     .foregroundColor(isTextInList ? Color.Blue300 : Color.Gray300)
+                    .environment(\.sizeCategory, .large)
                     .onChange(of: searchText, perform: { value in
                         self.isListVisible = !searchText.isEmpty && !(Department.departmentlist.contains(searchText))
                         self.isTextInList = Department.departmentlist.contains(searchText)
@@ -167,6 +169,7 @@ struct OnboardingStepOneSearchDepartmentView: View {
                             self.isListVisible = false
                         }
                         .foregroundColor(.gray300)
+                        .environment(\.sizeCategory, .large)
                         .listRowSeparator(.hidden)
                     }
                     .listRowBackground(Color.clear)

@@ -102,9 +102,10 @@ struct OnboardingStepThreeProgressBarView: View {
                 Spacer()
                 
                 Text("알림 설정")
-                    .padding(.top, 10)
                     .foregroundColor(Color.Blue300)
                     .font(.Bold16)
+                    .environment(\.sizeCategory, .large)
+                    .padding(.top, 10)
             }
             .padding(.trailing, 49)
             

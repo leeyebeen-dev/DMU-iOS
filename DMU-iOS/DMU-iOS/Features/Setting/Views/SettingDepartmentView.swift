@@ -49,6 +49,7 @@ struct SettingDepartmentView: View {
             Text("완료")
                 .font(.Medium16)
                 .foregroundColor(tempSettingDepartment != nil ? Color.Blue300 : Color.Gray500)
+                .environment(\.sizeCategory, .large)
         }
         .disabled(viewModel.settingDepartment == nil)
     }
@@ -71,6 +72,7 @@ struct SettingDepartmentView: View {
     func departmentSingleView(for department: String) -> some View {
         Text(department)
             .font(.Medium18)
+            .environment(\.sizeCategory, .large)
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 40, alignment: .center)
             .padding([.top, .bottom], 8)
             .background(tempSettingDepartment == department ? Color.Blue300 : Color.white)

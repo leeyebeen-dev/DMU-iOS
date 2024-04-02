@@ -79,6 +79,7 @@ struct NotificationKeywordEditTopBarView: View {
             Text("키워드 설정")
                 .font(.SemiBold20)
                 .foregroundColor(Color.Gray500)
+                .environment(\.sizeCategory, .large)
             
             Spacer()
             
@@ -98,6 +99,7 @@ struct NotificationKeywordEditBalloonView: View {
         VStack {
             Text("키워드를 설정하고 키워드 알림을 받아보세요!")
                 .font(.SemiBold13)
+                .environment(\.sizeCategory, .large)
                 .padding(.horizontal, 28)
                 .padding(.vertical, 12)
                 .foregroundColor(Color.Blue300)

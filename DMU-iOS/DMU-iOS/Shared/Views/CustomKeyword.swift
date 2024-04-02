@@ -96,6 +96,7 @@ struct KeywordSection: View {
             Text(title)
                 .font(.Medium20)
                 .foregroundColor(Color.Gray600)
+                .environment(\.sizeCategory, .large)
             
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 90), spacing: 0, alignment: .leading)], spacing: 16) {
                 ForEach(items, id: \.self) { item in
@@ -129,6 +130,7 @@ struct SelectableButton: View {
             Text(content)
                 .font(.SemiBold16)
                 .foregroundColor(isSelected ? Color.white : Color.Gray400)
+                .environment(\.sizeCategory, .large)
                 .frame(minWidth: 70, alignment: .center)
                 .padding(.vertical, 5).padding(.horizontal, 16)
                 .background(isSelected ? Color.Blue300 : Color.clear)

@@ -100,9 +100,10 @@ struct OnboardingStepTwoProgressBarView: View {
             
             HStack {
                 Text("키워드 설정")
-                    .padding(.top, 10)
                     .foregroundColor(Color.Blue300)
                     .font(.Bold16)
+                    .environment(\.sizeCategory, .large)
+                    .padding(.top, 10)
             }
             
         }

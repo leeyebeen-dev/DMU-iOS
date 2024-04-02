@@ -21,16 +21,16 @@ struct SettingView: View {
             VStack(alignment: .leading, spacing: 20) {
                 Text("설정")
                     .font(.system(size: 20, weight: .semibold))
-                    .padding()
                     .frame(maxWidth: .infinity, alignment: .center)
                     .foregroundColor(Color.Gray500)
                     .environment(\.sizeCategory, .large)
+                    .padding()
                 
                 Text("대학 공지")
                     .font(.SemiBold15)
                     .foregroundColor(Color.Blue300)
-                    .padding(.horizontal, 20)
                     .environment(\.sizeCategory, .large)
+                    .padding(.horizontal, 20)
                 
                 Toggle(isOn: $viewModel.userSettings.isKeywordNotificationOn) {
                     Text("알림 설정")
@@ -68,8 +68,8 @@ struct SettingView: View {
                 Text("학과 공지")
                     .font(.SemiBold15)
                     .foregroundColor(Color.Blue300)
-                    .padding(.horizontal, 20)
                     .environment(\.sizeCategory, .large)
+                    .padding(.horizontal, 20)
                 
                 Toggle(isOn: $viewModel.userSettings.isDepartmentNotificationOn) {
                     Text("알림 설정")
@@ -115,8 +115,8 @@ struct SettingView: View {
                 Text("앱 정보")
                     .font(.SemiBold15)
                     .foregroundColor(Color.Blue300)
-                    .padding(.horizontal, 20)
                     .environment(\.sizeCategory, .large)
+                    .padding(.horizontal, 20)
                 
                 Link(destination: URL(string: "https://forms.gle/dKdiLdKwNGmQdb11A")!) {
                     Text("문의하기")
@@ -131,8 +131,8 @@ struct SettingView: View {
                     Text("개인정보 처리방침")
                         .font(.Medium18)
                         .foregroundColor(Color.Gray500)
-                        .padding(.horizontal, 20)
                         .environment(\.sizeCategory, .large)
+                        .padding(.horizontal, 20)
                 }
                 
                 Button(action: {
@@ -143,8 +143,8 @@ struct SettingView: View {
                     Text("오픈소스 라이선스")
                         .font(.Medium18)
                         .foregroundColor(Color.Gray500)
-                        .padding(.horizontal, 20)
                         .environment(\.sizeCategory, .large)
+                        .padding(.horizontal, 20)
                 })
                 
                 HStack {

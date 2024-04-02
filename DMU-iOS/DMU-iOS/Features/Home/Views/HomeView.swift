@@ -29,13 +29,13 @@ struct HomeView: View {
                             Text("공지를 불러오지 못했어요")
                                 .font(.SemiBold20)
                                 .foregroundColor(Color.Gray600)
-                                .padding(.bottom, 12)
                                 .environment(\.sizeCategory, .large)
+                                .padding(.bottom, 12)
                             Text("네트워크 상태를 확인한 후,\n새로고침 버튼을 눌러 페이지를 불러올 수 있어요.")
                                 .font(.Medium16)
                                 .foregroundColor(Color.Gray400)
-                                .padding(.bottom, 28)
                                 .environment(\.sizeCategory, .large)
+                                .padding(.bottom, 28)
                             CustomButton(title: "새로고침", action: {
                                 viewModel.resetAndLoadFirstPageOfUniversityNotices()
                                 viewModel.resetAndLoadFirstPageOfDepartmentNotices(department: userSettings.selectedDepartment)
@@ -192,6 +192,7 @@ struct NoticeSingleView: View {
             HStack {
                 Text(notices.noticeTitle)
                     .font(.Medium16)
+                    .environment(\.sizeCategory, .large)
                     .multilineTextAlignment(.leading) // 여러 줄 정렬
                     .foregroundColor(Color.black)
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -201,10 +202,12 @@ struct NoticeSingleView: View {
                 Text(notices.noticeDate.formattedString)
                     .font(.Regular12)
                     .foregroundColor(Color.Gray400)
+                    .environment(\.sizeCategory, .large)
                 
                 Text(notices.noticeStaffName)
                     .font(.Regular12)
                     .foregroundColor(Color.Gray400)
+                    .environment(\.sizeCategory, .large)
                     .padding(.leading, 12)
             }
             .padding(.top, 1)
