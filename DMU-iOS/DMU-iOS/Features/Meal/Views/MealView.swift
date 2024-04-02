@@ -84,14 +84,14 @@ struct WeeklyCalendarSingleDateView: View {
             Text("\(Calendar.current.component(.month, from: date))월")
                 .font(.Medium12)
                 .foregroundColor(Color.Gray500)
+                .frame(width: 30)
                 .padding(.bottom, 10)
                 .lineLimit(1)
                 .environment(\.sizeCategory, .large)
             Text("\(Calendar.current.component(.day, from: date))")
                 .font(.Medium16)
-                .padding(.horizontal, 8)
-                .padding(.vertical, "\(Calendar.current.component(.day, from: date))".count == 1 ? 4 : 6)
                 .foregroundColor(calendar.isDate(date, inSameDayAs: selectedDate) ? Color.white : Color.Gray500)
+                .frame(width: 28, height: 28, alignment: .center)
                 .background(calendar.isDate(date, inSameDayAs: selectedDate) ? Color.Blue300 : Color.clear)
                 .cornerRadius(10)
                 .lineLimit(1)
@@ -100,10 +100,11 @@ struct WeeklyCalendarSingleDateView: View {
                 .font(.Medium12)
                 .padding(.top, 10)
                 .foregroundColor(Color.Gray500)
+                .frame(width: 30)
                 .lineLimit(1)
                 .environment(\.sizeCategory, .large)
         }
-        .padding(.horizontal, 16)
+        .padding(.horizontal, 18)
         .onTapGesture {
             self.selectedDate = self.date
         }
