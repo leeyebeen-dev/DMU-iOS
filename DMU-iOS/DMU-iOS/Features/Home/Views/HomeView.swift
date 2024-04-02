@@ -24,7 +24,25 @@ struct HomeView: View {
                 }
                 
                 VStack{
-                    if viewModel.isDepartmentNoticeLoading || viewModel.isUniversityNoticeLoading {
+                    if viewModel.isUniversityNoticeLoadingFailed || viewModel.isDepartmentNoticeLoadingFailed {
+                        VStack(alignment: .center) {
+                            Text("공지를 불러오지 못했어요")
+                                .font(.SemiBold20)
+                                .foregroundColor(Color.Gray600)
+                                .padding(.bottom, 12)
+                                .environment(\.sizeCategory, .large)
+                            Text("네트워크 상태를 확인한 후,\n새로고침 버튼을 눌러 페이지를 불러올 수 있어요.")
+                                .font(.Medium16)
+                                .foregroundColor(Color.Gray400)
+                                .padding(.bottom, 28)
+                                .environment(\.sizeCategory, .large)
+                            CustomButton(title: "새로고침", action: {
+                                viewModel.resetAndLoadFirstPageOfUniversityNotices()
+                                viewModel.resetAndLoadFirstPageOfDepartmentNotices(department: userSettings.selectedDepartment)
+                            }, isEnabled: true)
+                        }
+                        .multilineTextAlignment(.center)
+                    } else if viewModel.isDepartmentNoticeLoading || viewModel.isUniversityNoticeLoading {
                         LoadingView(lottieFileName: "DMforU_Loading_GIF")
                             .frame(width: 100, height: 100)
                     }

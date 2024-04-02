@@ -11,6 +11,7 @@ class MealViewModel: ObservableObject {
     
     @Published var weeklyMenu: [Menu] = []
     @Published var isMenuLoading = false
+    @Published var isMenuLoadingFailed = false
     
     private let menuService = MenuService()
     
@@ -29,15 +30,18 @@ class MealViewModel: ObservableObject {
     // MARK: 금주의 식단 데이터 통신
     func loadMenuData() {
         self.isMenuLoading = true
+        self.isMenuLoadingFailed = false
         
         menuService.getMenus { [weak self] result in
             switch result {
             case .success(let menus):
                 DispatchQueue.main.async {
                     self?.weeklyMenu = menus
+                    self?.isMenuLoadingFailed = false
                 }
             case .failure(let error):
                 print("Failed to get menus: \(error)")
+                self?.isMenuLoadingFailed = true
             }
             self?.isMenuLoading = false
         }

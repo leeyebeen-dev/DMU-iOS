@@ -22,7 +22,24 @@ struct ScheduleView: View {
             }
             
             VStack {
-                if viewModel.isScheduleLoading {
+                if viewModel.isScheduleLoadingFailed {
+                    VStack(alignment: .center) {
+                        Text("학사일정을 불러오지 못했어요")
+                            .font(.SemiBold20)
+                            .foregroundColor(Color.Gray600)
+                            .padding(.bottom, 12)
+                            .environment(\.sizeCategory, .large)
+                        Text("네트워크 상태를 확인한 후,\n새로고침 버튼을 눌러 페이지를 불러올 수 있어요.")
+                            .font(.Medium16)
+                            .foregroundColor(Color.Gray400)
+                            .padding(.bottom, 28)
+                            .environment(\.sizeCategory, .large)
+                        CustomButton(title: "새로고침", action: {
+                            viewModel.loadScheduleData()
+                        }, isEnabled: true)
+                    }
+                    .multilineTextAlignment(.center)
+                } else if viewModel.isScheduleLoading {
                     LoadingView(lottieFileName: "DMforU_Loading_GIF")
                         .frame(width: 100, height: 100)
                 }

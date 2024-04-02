@@ -12,6 +12,7 @@ class ScheduleViewModel: ObservableObject {
     @Published var currentDate = Date()
     @Published var schedules: [Schedule] = []
     @Published var isScheduleLoading = false
+    @Published var isScheduleLoadingFailed = false
     
     private let calendar = Calendar.current
     private let scheduleService = ScheduleService()
@@ -28,15 +29,18 @@ class ScheduleViewModel: ObservableObject {
         let month = calendar.component(.month, from: currentDate)
         
         self.isScheduleLoading = true
+        self.isScheduleLoadingFailed = false
         
         scheduleService.getSchedules(year: year, month: month) { [weak self] result in
             switch result {
             case .success(let yearSchedule):
                 DispatchQueue.main.async {
                     self?.schedules = yearSchedule.filter { $0.year == year && $0.month == month }
+                    self?.isScheduleLoadingFailed = false
                 }
             case .failure(let error):
                 print("Failed to get schedules: \(error)")
+                self?.isScheduleLoadingFailed = true
             }
             self?.isScheduleLoading = false
         }
