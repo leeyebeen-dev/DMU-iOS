@@ -12,7 +12,7 @@ struct SettingView: View {
     @State var isNavigatingSettingToKeywordEditView = false
     @State var isNavigationSettingToDepartmentSettingView = false
     
-    @ObservedObject var viewModel: SettingViewModel
+    @StateObject var viewModel: SettingViewModel
     
     @Environment(\.openURL) var openURL
     

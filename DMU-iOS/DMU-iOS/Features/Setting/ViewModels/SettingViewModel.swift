@@ -17,21 +17,10 @@ class SettingViewModel: ObservableObject {
         self.settingDepartment = userSettings.selectedDepartment
     }
     
-    //MARK: 학과 선택
-    func selectDepartment(_ department: String) {
-        if settingDepartment == department {
-            settingDepartment = nil
-        } else {
-            settingDepartment = department
-        }
-    }
-    
     //MARK: 선택 학과 저장
-    func saveDepartment() {
-        guard let department = settingDepartment else {
-            return
-        }
+    func saveDepartment(department: String) {
         userSettings.selectedDepartment = department
+        settingDepartment = department
     }
     
     //MARK: 키워드 업데이트 (알림 ON, 키워드 설정)
