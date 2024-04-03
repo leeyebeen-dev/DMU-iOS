@@ -97,7 +97,7 @@ struct SearchBarView: View {
                     }
                 }
             })
-            .padding(EdgeInsets(top: 12, leading: 40, bottom: 12, trailing: 36))
+            .padding(EdgeInsets(top: 12, leading: 40, bottom: 12, trailing: 40))
             .background(textfieldBackgroundColor)
             .foregroundColor(textfieldForegroundColor)
             .font(.Medium16)
