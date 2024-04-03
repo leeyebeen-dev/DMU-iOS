@@ -10,6 +10,7 @@ import Foundation
 class MealViewModel: ObservableObject {
     
     @Published var weeklyMenu: [Menu] = []
+    @Published var weeklyOneMenu: [OneMenu] = OneMenuList
     @Published var isMenuLoading = false
     @Published var isMenuLoadingFailed = false
     

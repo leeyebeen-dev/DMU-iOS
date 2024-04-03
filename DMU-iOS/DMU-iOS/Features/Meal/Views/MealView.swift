@@ -202,7 +202,8 @@ struct WeeklyMenuDetailView: View {
                         MenuDetailSingleView(category: "🍚 한식", details: menu.details, width: geometry.size.width)
                     }
                     Spacer(minLength: 20)
-                    MenuDetailSingleView(category: "🍛 일품", details: [], width: geometry.size.width)
+                    let oneMenu = viewModel.weeklyOneMenu.flatMap { $0.details }
+                    MenuDetailSingleView(category: "🍛 일품", details: oneMenu, width: geometry.size.width)
                 }
                 .padding(.top, 30)
                 .padding(.horizontal, 20)

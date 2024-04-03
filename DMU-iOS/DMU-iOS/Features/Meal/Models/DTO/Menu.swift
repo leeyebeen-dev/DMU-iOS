@@ -14,3 +14,13 @@ struct Menu: Identifiable {
     var date: String
     var details: [String]
 }
+
+// MARK: - 일품
+struct OneMenu: Identifiable {
+    var id = UUID()
+    var details: [String]
+}
+
+let OneMenuList = [
+    OneMenu(details: ["김치볶음밥 4900원", "새우볶음밥&짜장소스 5500원", "오므라이스 5500원", "라면 4000원", "치즈라면 4500원", "해물짬뽕라면 4500원", "돈까스 5000원", "치즈돈까스 5500원", "고구마치즈돈까스 6000"]),
+]
