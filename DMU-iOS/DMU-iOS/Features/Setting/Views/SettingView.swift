@@ -156,7 +156,7 @@ struct SettingView: View {
                         
                         Spacer()
                         
-                        Text("1.0.0")
+                        Text(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "버전 정보 없음")
                             .font(.Medium14)
                             .foregroundColor(Color.Gray400)
                             .environment(\.sizeCategory, .large)
