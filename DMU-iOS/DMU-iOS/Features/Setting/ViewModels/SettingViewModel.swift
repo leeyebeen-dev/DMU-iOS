@@ -9,8 +9,6 @@ import Foundation
 
 class SettingViewModel: ObservableObject {
     
-    @Published var settingDepartment: String? = nil
-    @Published var settingKeywordsContents: [String] = []
     @Published var userSettings: UserSettings
     
     init(userSettings: UserSettings) {
@@ -22,6 +20,9 @@ class SettingViewModel: ObservableObject {
     //MARK: -키워드 편집
     
     //MARK: 키워드 업데이트 (알림 ON, 키워드 설정)
+    @Published var settingKeywordsContents: [String] = []
+    @Published var isUpdateKeywordLoading = false
+    
     private var notificationService = NotificationService()
     
     func saveKeyword(keywords: [String]) {
@@ -30,6 +31,8 @@ class SettingViewModel: ObservableObject {
     }
     
     func postUpdateKeyword() {
+        self.isUpdateKeywordLoading = true
+        
         if userSettings.fcmToken.isEmpty {
             print("FCM 토큰 없음")
             return
@@ -55,11 +58,14 @@ class SettingViewModel: ObservableObject {
             case .failure(let error):
                 print("키워드 업데이트 실패: \(error.localizedDescription)")
             }
+            self.isUpdateKeywordLoading = false
         }
     }
     
     //MARK: 키워드 삭제 (알림 OFF)
     func postDeleteKeyword() {
+        self.isUpdateKeywordLoading = true
+        
         if userSettings.fcmToken.isEmpty {
             print("FCM 토큰 없음")
             return
@@ -83,10 +89,14 @@ class SettingViewModel: ObservableObject {
             case .failure(let error):
                 print("키워드 삭제 실패: \(error.localizedDescription)")
             }
+            self.isUpdateKeywordLoading = false
         }
     }
     
     //MARK: -학과 편집
+    
+    @Published var settingDepartment: String? = nil
+    @Published var isUpdateDepartmentLoading = false
     
     //MARK: 선택 학과 저장
     func saveDepartment(department: String) {
@@ -96,6 +106,8 @@ class SettingViewModel: ObservableObject {
     
     //MARK: 학과 업데이트 (알림 ON, 학과 설정)
     func postUpdateDepartment(){
+        self.isUpdateDepartmentLoading = true
+        
         if userSettings.fcmToken.isEmpty {
             print("FCM 토큰 없음")
             return
@@ -121,11 +133,14 @@ class SettingViewModel: ObservableObject {
             case .failure(let error):
                 print("학과 업데이트 실패: \(error.localizedDescription)")
             }
+            self.isUpdateDepartmentLoading = false
         }
     }
     
     //MARK: 학과 삭제 (알림 OFF)
     func postDeleteDepartment(){
+        self.isUpdateDepartmentLoading = true
+        
         if userSettings.fcmToken.isEmpty {
             print("FCM 토큰 없음")
             return
@@ -149,6 +164,7 @@ class SettingViewModel: ObservableObject {
             case .failure(let error):
                 print("학과 삭제 실패: \(error.localizedDescription)")
             }
+            self.isUpdateDepartmentLoading = false
         }
     }
 }
