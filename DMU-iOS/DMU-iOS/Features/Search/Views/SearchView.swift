@@ -97,7 +97,7 @@ struct SearchBarView: View {
                     }
                 }
             })
-            .padding(EdgeInsets(top: 12, leading: 40, bottom: 12, trailing: 12))
+            .padding(EdgeInsets(top: 12, leading: 40, bottom: 12, trailing: 36))
             .background(textfieldBackgroundColor)
             .foregroundColor(textfieldForegroundColor)
             .font(.Medium16)
@@ -108,6 +108,7 @@ struct SearchBarView: View {
                     Image(systemName: "magnifyingglass")
                         .foregroundColor(imageForegroundColor)
                         .padding(.leading, 12)
+                        .padding(.trailing, 12)
 
                     Spacer()
 
