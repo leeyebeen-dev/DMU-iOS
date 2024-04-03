@@ -206,6 +206,7 @@ struct WeeklyMenuDetailView: View {
                     MenuDetailSingleView(category: "🍛 일품", details: oneMenu, width: geometry.size.width)
                 }
                 .padding(.top, 30)
+                .padding(.bottom, 20)
                 .padding(.horizontal, 20)
             }
         }
