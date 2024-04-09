@@ -77,37 +77,43 @@ struct OnboardingStepTwoTitleView: View {
 struct OnboardingStepTwoProgressBarView: View {
     
     var body: some View {
-        VStack(alignment: .center) {
-            HStack {
-                Circle()
-                    .frame(width: 12, height: 12)
-                    .foregroundColor(Color.Gray300)
+        GeometryReader { geometry in
+            VStack(alignment: .center) {
+                HStack {
+                    Circle()
+                        .frame(width: 12, height: 12)
+                        .foregroundColor(Color.Gray300)
+                    
+                    Spacer()
+                    
+                    Circle()
+                        .frame(width: 12, height: 12)
+                        .foregroundColor(Color.Blue300)
+                    
+                    Spacer()
+                    
+                    Circle()
+                        .frame(width: 12, height: 12)
+                        .foregroundColor(Color.Gray300)
+                }
+                .frame(width: geometry.size.width * 0.6, height: 2)
+                .background(Color.Gray300)
                 
-                Spacer()
-                
-                Circle()
-                    .frame(width: 12, height: 12)
-                    .foregroundColor(Color.Blue300)
-                
-                Spacer()
-                
-                Circle()
-                    .frame(width: 12, height: 12)
-                    .foregroundColor(Color.Gray300)
+                HStack {
+                    Spacer()
+                    
+                    Text("키워드 설정")
+                        .foregroundColor(Color.Blue300)
+                        .font(.Bold16)
+                        .environment(\.sizeCategory, .large)
+                        .padding(.top, 10)
+                    
+                    Spacer()
+                }
             }
-            .frame(width: 240, height: 2)
-            .background(Color.Gray300)
-            
-            HStack {
-                Text("키워드 설정")
-                    .foregroundColor(Color.Blue300)
-                    .font(.Bold16)
-                    .environment(\.sizeCategory, .large)
-                    .padding(.top, 10)
-            }
-            
+            .padding(.top, 40)
         }
-        .padding(.top, 40)
+        .frame(height: 82)
     }
 }
 
