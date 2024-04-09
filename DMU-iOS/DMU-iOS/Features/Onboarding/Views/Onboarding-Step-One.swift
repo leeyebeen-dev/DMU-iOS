@@ -83,40 +83,42 @@ struct OnboardingStepOneTitleView: View {
 struct OnboardingStepOneProgressBarView: View {
     
     var body: some View {
-        VStack(alignment: .center) {
-            HStack {
-                Circle()
-                    .frame(width: 12, height: 12)
-                    .foregroundColor(Color.Blue300)
+        GeometryReader { geometry in
+            VStack(alignment: .center) {
+                HStack {
+                    Circle()
+                        .frame(width: 12, height: 12)
+                        .foregroundColor(Color.Blue300)
+                    
+                    Spacer()
+                    
+                    Circle()
+                        .frame(width: 12, height: 12)
+                        .foregroundColor(Color.Gray300)
+                    
+                    Spacer()
+                    
+                    Circle()
+                        .frame(width: 12, height: 12)
+                        .foregroundColor(Color.Gray300)
+                }
+                .frame(width: geometry.size.width * 0.6, height: 2)
+                .background(Color.Gray300)
                 
-                Spacer()
-                
-                Circle()
-                    .frame(width: 12, height: 12)
-                    .foregroundColor(Color.Gray300)
-                
-                Spacer()
-                
-                Circle()
-                    .frame(width: 12, height: 12)
-                    .foregroundColor(Color.Gray300)
+                HStack {
+                    Text("학과 선택")
+                        .foregroundColor(Color.Blue300)
+                        .font(.Bold16)
+                        .environment(\.sizeCategory, .large)
+                        .padding(.top, 10)
+                    
+                    Spacer()
+                }
+                .padding(.leading, geometry.size.width * 0.14)
             }
-            .frame(width: 240, height: 2)
-            .background(Color.Gray300)
-            
-            HStack {
-                Text("학과 선택")
-                    .foregroundColor(Color.Blue300)
-                    .font(.Bold16)
-                    .environment(\.sizeCategory, .large)
-                    .padding(.top, 10)
-                
-                Spacer()
-            }
-            .padding(.leading, 49)
-            
+            .padding(.top, 40)
         }
-        .padding(.top, 40)
+        .frame(height: 82)
     }
 }
 
