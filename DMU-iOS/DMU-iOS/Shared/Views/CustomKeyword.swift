@@ -98,7 +98,7 @@ struct KeywordSection: View {
                 .foregroundColor(Color.Gray600)
                 .environment(\.sizeCategory, .large)
             
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: 90), spacing: 0, alignment: .leading)], spacing: 16) {
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 100), spacing: 0, alignment: .leading)], spacing: 16) {
                 ForEach(items, id: \.self) { item in
                     SelectableButton(content: item, isSelected: selectedKeywords.contains(where: { Keyword(rawValue: $0)?.displayName == item }), action: {
                         if let keyword = Keyword.allCases.first(where: { $0.displayName == item }) {
