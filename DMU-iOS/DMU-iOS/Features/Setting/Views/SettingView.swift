@@ -53,13 +53,15 @@ struct SettingView: View {
                     Button(action: {
                         self.isNavigatingSettingToKeywordEditView.toggle()
                     }) {
-                        Text("키워드 설정")
-                            .font(.Medium18)
-                            .foregroundColor(Color.Gray500)
-                            .environment(\.sizeCategory, .large)
+                        HStack {
+                            Text("키워드 설정")
+                                .font(.Medium18)
+                                .foregroundColor(Color.Gray500)
+                                .environment(\.sizeCategory, .large)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     }
                     .padding(.horizontal, 20)
-                    .frame(maxWidth: .infinity, alignment: .leading)
                     .fullScreenCover(isPresented: $isNavigatingSettingToKeywordEditView) {
                         NotificationKeywordEditView(viewModel: viewModel, isNavigatingToKeywordEditView: $isNavigatingSettingToKeywordEditView)
                     }
@@ -89,17 +91,17 @@ struct SettingView: View {
                     }
                     
                     HStack {
-                        Text("학과 설정")
-                            .font(.Medium18)
-                            .foregroundColor(Color.Gray500)
-                            .environment(\.sizeCategory, .large)
-                        
-                        Spacer()
-                        
                         Button(action: {
                             self.isNavigationSettingToDepartmentSettingView.toggle()
                         }) {
                             HStack {
+                                Text("학과 설정")
+                                    .font(.Medium18)
+                                    .foregroundColor(Color.Gray500)
+                                    .environment(\.sizeCategory, .large)
+                                
+                                Spacer()
+                                
                                 Text(viewModel.userSettings.selectedDepartment)
                                     .font(.Medium14)
                                     .foregroundColor(Color.Gray400)
@@ -107,6 +109,7 @@ struct SettingView: View {
                                 Image(systemName: "chevron.right")
                                     .foregroundColor(Color.Gray500)
                             }
+                            .frame(maxWidth: .infinity, alignment: .leading)
                         }
                     }
                     .padding(.horizontal, 20)
@@ -120,20 +123,26 @@ struct SettingView: View {
                         .padding(.horizontal, 20)
                     
                     Link(destination: URL(string: "https://forms.gle/dKdiLdKwNGmQdb11A")!) {
-                        Text("문의하기")
-                            .font(.Medium18)
-                            .foregroundColor(Color.Gray500)
-                            .environment(\.sizeCategory, .large)
+                        HStack {
+                            Text("문의하기")
+                                .font(.Medium18)
+                                .foregroundColor(Color.Gray500)
+                                .environment(\.sizeCategory, .large)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     }
                     .padding(.horizontal, 20)
                     
                     NavigationLink(destination:
                                     SettingWebViewDetail(urlString: "https://sites.google.com/view/dmforu-privacy-policy/%ED%99%88")){
-                        Text("개인정보 처리방침")
-                            .font(.Medium18)
-                            .foregroundColor(Color.Gray500)
-                            .environment(\.sizeCategory, .large)
-                            .padding(.horizontal, 20)
+                        HStack {
+                            Text("개인정보 처리방침")
+                                .font(.Medium18)
+                                .foregroundColor(Color.Gray500)
+                                .environment(\.sizeCategory, .large)
+                                .padding(.horizontal, 20)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     }
                     
                     Button(action: {
@@ -141,11 +150,14 @@ struct SettingView: View {
                             openURL(url)
                         }
                     }, label: {
-                        Text("오픈소스 라이선스")
-                            .font(.Medium18)
-                            .foregroundColor(Color.Gray500)
-                            .environment(\.sizeCategory, .large)
-                            .padding(.horizontal, 20)
+                        HStack {
+                            Text("오픈소스 라이선스")
+                                .font(.Medium18)
+                                .foregroundColor(Color.Gray500)
+                                .environment(\.sizeCategory, .large)
+                                .padding(.horizontal, 20)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     })
                     
                     HStack {
