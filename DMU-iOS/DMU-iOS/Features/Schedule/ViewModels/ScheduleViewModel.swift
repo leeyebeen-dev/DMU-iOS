@@ -8,10 +8,16 @@
 import Foundation
 
 class ScheduleViewModel: ObservableObject {
-        
-    @Published var currentDate = Date()
-    @Published var selectedYear: Int
-    @Published var selectedMonth: Int
+    
+    @Published var currentDate = Date() {
+        didSet {
+            selectedYear = calendar.component(.year, from: currentDate)
+            selectedMonth = calendar.component(.month, from: currentDate)
+        }
+    }
+    
+    @Published var selectedYear: Int = Calendar.current.component(.year, from: Date())
+    @Published var selectedMonth: Int = Calendar.current.component(.month, from: Date())
     
     @Published var schedules: [Schedule] = []
     @Published var isScheduleLoading = false
@@ -19,12 +25,6 @@ class ScheduleViewModel: ObservableObject {
     
     private let calendar = Calendar.current
     private let scheduleService = ScheduleService()
-    
-    init(currentDate: Date = Date()) {
-        self.currentDate = currentDate
-        self.selectedYear = calendar.component(.year, from: currentDate)
-        self.selectedMonth = calendar.component(.month, from: currentDate)
-    }
     
     static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -56,7 +56,7 @@ class ScheduleViewModel: ObservableObject {
     }
     
     // MARK: 데이트피커를 통해 년월 선택
-    func selectScheduleData() {
+    func selectYearMonth() {
         if let newDate = Calendar.current.date(from: DateComponents(year: selectedYear, month: selectedMonth)) {
             currentDate = newDate
             loadScheduleData()

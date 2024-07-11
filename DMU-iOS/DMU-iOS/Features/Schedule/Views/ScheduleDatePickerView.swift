@@ -10,18 +10,10 @@ import SwiftUI
 struct ScheduleDatePickerView: View {
     
     @StateObject var viewModel: ScheduleViewModel
-    
     @Binding var isPresented: Bool
     
-    @State private var tempSelectedYear: Int
-    @State private var tempSelectedMonth: Int
-    
-    init(viewModel: ScheduleViewModel, isPresented: Binding<Bool>) {
-        _viewModel = StateObject(wrappedValue: viewModel)
-        _isPresented = isPresented
-        _tempSelectedYear = State(initialValue: viewModel.selectedYear)
-                _tempSelectedMonth = State(initialValue: viewModel.selectedMonth)
-    }
+    @State private var tempSelectedYear: Int = 0
+    @State private var tempSelectedMonth: Int = 0
     
     var body: some View {
         VStack {
@@ -43,7 +35,7 @@ struct ScheduleDatePickerView: View {
             CustomButton(title: "완료", action: {
                 viewModel.selectedYear = tempSelectedYear
                 viewModel.selectedMonth = tempSelectedMonth
-                viewModel.selectScheduleData()
+                viewModel.selectYearMonth()
                 isPresented = false
             }, isEnabled: true)
         }
