@@ -8,8 +8,17 @@
 import Foundation
 
 class ScheduleViewModel: ObservableObject {
-        
-    @Published var currentDate = Date()
+    
+    @Published var currentDate = Date() {
+        didSet {
+            selectedYear = calendar.component(.year, from: currentDate)
+            selectedMonth = calendar.component(.month, from: currentDate)
+        }
+    }
+    
+    @Published var selectedYear: Int = Calendar.current.component(.year, from: Date())
+    @Published var selectedMonth: Int = Calendar.current.component(.month, from: Date())
+    
     @Published var schedules: [Schedule] = []
     @Published var isScheduleLoading = false
     @Published var isScheduleLoadingFailed = false
@@ -46,13 +55,12 @@ class ScheduleViewModel: ObservableObject {
         }
     }
     
-    // MARK: 학사일정 월 이동
-    func changeMonth(by increment: Int) {
-        guard let newDate = calendar.date(byAdding: .month, value: increment, to: currentDate) else { return }
-        
-        currentDate = newDate
-        
-        loadScheduleData()
+    // MARK: 데이트피커를 통해 년월 선택
+    func selectYearMonth() {
+        if let newDate = Calendar.current.date(from: DateComponents(year: selectedYear, month: selectedMonth)) {
+            currentDate = newDate
+            loadScheduleData()
+        }
     }
     
     // MARK: 현재 년월
