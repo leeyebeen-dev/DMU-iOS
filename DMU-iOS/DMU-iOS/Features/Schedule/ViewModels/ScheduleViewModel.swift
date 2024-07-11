@@ -10,12 +10,21 @@ import Foundation
 class ScheduleViewModel: ObservableObject {
         
     @Published var currentDate = Date()
+    @Published var selectedYear: Int
+    @Published var selectedMonth: Int
+    
     @Published var schedules: [Schedule] = []
     @Published var isScheduleLoading = false
     @Published var isScheduleLoadingFailed = false
     
     private let calendar = Calendar.current
     private let scheduleService = ScheduleService()
+    
+    init(currentDate: Date = Date()) {
+        self.currentDate = currentDate
+        self.selectedYear = calendar.component(.year, from: currentDate)
+        self.selectedMonth = calendar.component(.month, from: currentDate)
+    }
     
     static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -46,13 +55,12 @@ class ScheduleViewModel: ObservableObject {
         }
     }
     
-    // MARK: 학사일정 월 이동
-    func changeMonth(by increment: Int) {
-        guard let newDate = calendar.date(byAdding: .month, value: increment, to: currentDate) else { return }
-        
-        currentDate = newDate
-        
-        loadScheduleData()
+    // MARK: 데이트피커를 통해 년월 선택
+    func selectScheduleData() {
+        if let newDate = Calendar.current.date(from: DateComponents(year: selectedYear, month: selectedMonth)) {
+            currentDate = newDate
+            loadScheduleData()
+        }
     }
     
     // MARK: 현재 년월
