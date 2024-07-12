@@ -35,13 +35,81 @@ struct DMU_iOSApp: App {
         UINavigationBar.appearance().standardAppearance = appearanceNavigationBar
     }
     
+    @Environment(\.scenePhase) private var scenePhase
+    
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .onAppear {
+                    checkAndUpdateIfNeeded()
+                }
+                .onChange(of: scenePhase) { newPhase in
+                    if newPhase == .active {
+                        checkAndUpdateIfNeeded()
+                    }
+                }
                 .environmentObject(UserSettings())
         }
+    }
+    
+    func checkAndUpdateIfNeeded() {
+        AppStoreCheck().latestVersion { marketingVersion in
+            DispatchQueue.main.async {
+                guard let marketingVersion = marketingVersion else {
+                    print("앱스토어 버전을 찾지 못했습니다.")
+                    return
+                }
+                
+                // 현재 기기의 버전
+                let currentProjectVersion = AppStoreCheck.appVersion ?? ""
+                
+                // 앱스토어의 버전을 .을 기준으로 나눈 것
+                let splitMarketingVersion = marketingVersion.split(separator: ".").compactMap { Int($0) }
+                
+                // 현재 기기의 버전을 .을 기준으로 나눈 것
+                let splitCurrentProjectVersion = currentProjectVersion.split(separator: ".").compactMap { Int($0) }
+                
+                if splitCurrentProjectVersion.count == 3 && splitMarketingVersion.count == 3 {
+                    // 버전을 순차적으로 비교
+                    for (current, marketing) in zip(splitCurrentProjectVersion, splitMarketingVersion) {
+                        if current < marketing {
+                            showUpdateAlert(version: marketingVersion)
+                            return
+                        } else if current > marketing {
+                            print("현재 최신 버전입니다.")
+                            return
+                        }
+                    }
+                    print("현재 최신 버전입니다.")
+                } else {
+                    print("버전 형식이 올바르지 않습니다.")
+                }
+            }
+        }
+    }
+    
+    func showUpdateAlert(version: String) {
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let window = windowScene.windows.first else {
+            print("윈도우 씬을 찾을 수 없습니다.")
+            return
+        }
+        
+        let alert = UIAlertController(
+            title: "업데이트 알림",
+            message: "더 나은 서비스를 위해 DMforU가 수정되었어요.\n업데이트할까요?",
+            preferredStyle: .alert
+        )
+        
+        let updateAction = UIAlertAction(title: "업데이트", style: .default) { _ in
+            // 업데이트 버튼을 누르면 해당 앱스토어로 이동한다.
+            AppStoreCheck().openAppStore()
+        }
+        
+        alert.addAction(updateAction)
+        window.rootViewController?.present(alert, animated: true, completion: nil)
     }
 }
 
