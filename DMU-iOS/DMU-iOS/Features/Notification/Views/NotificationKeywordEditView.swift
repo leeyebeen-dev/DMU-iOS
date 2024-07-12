@@ -48,7 +48,7 @@ struct NotificationKeywordEditView: View {
                     viewModel.postUpdateKeyword()
                     isNavigatingToKeywordEditView = false
                 },
-                isEnabled: true
+                isEnabled: !tempSettingKeywords.isEmpty
             )
             
             Spacer()
