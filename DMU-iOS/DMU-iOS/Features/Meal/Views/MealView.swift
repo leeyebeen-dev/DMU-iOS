@@ -136,7 +136,7 @@ struct RestaurantInfomationView: View {
         HStack(alignment: .center) {
             InfomationSingleView(imageName: "map", text: "8호관 3층")
                 .padding(.trailing, 20)
-            InfomationSingleView(imageName: "clock", text: "11:30 - 14:00, 16:30 - 18:00")
+            InfomationSingleView(imageName: "clock", text: "11:00 - 14:00, 16:30 - 18:00")
         }
         .padding(.top, 20)
     }
