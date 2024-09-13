@@ -198,11 +198,16 @@ struct WeeklyMenuDetailView: View {
         GeometryReader { geometry in
             ScrollView {
                 VStack {
+                    // 한식 메뉴
                     if let menu = viewModel.getMenuForDate(for: selectedDate) {
                         MenuDetailSingleView(category: "🍚 한식", details: menu.details, width: geometry.size.width)
                     }
+                    
                     Spacer(minLength: 20)
-                    let oneMenu = viewModel.weeklyOneMenu.flatMap { $0.details }
+                    
+                    // 일품 메뉴
+                    let oneMenu = viewModel.filteredOneMenu(for: selectedDate).flatMap { $0.details }
+                    
                     MenuDetailSingleView(category: "🍛 일품", details: oneMenu, width: geometry.size.width)
                 }
                 .padding(.top, 30)

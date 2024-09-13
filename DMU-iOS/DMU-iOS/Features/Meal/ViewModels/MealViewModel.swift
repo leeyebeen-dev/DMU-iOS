@@ -71,4 +71,27 @@ class MealViewModel: ObservableObject {
         
         return menuForDate
     }
+    
+    // MARK: - 요일별 일품 메뉴 필터링
+        func filteredOneMenu(for date: Date) -> [OneMenu] {
+            let weekday = calendar.component(.weekday, from: date)
+            let selectedWeekday: Weekday
+
+            switch weekday {
+            case 2:
+                selectedWeekday = .monday
+            case 3:
+                selectedWeekday = .tuesday
+            case 4:
+                selectedWeekday = .wednesday
+            case 5:
+                selectedWeekday = .thursday
+            case 6:
+                selectedWeekday = .friday
+            default:
+                return [] // 월요일에서 금요일, 외의 요일은 처리하지 않음
+            }
+            
+            return weeklyOneMenu.filter { $0.availableDays.contains(selectedWeekday) }
+        }
 }
